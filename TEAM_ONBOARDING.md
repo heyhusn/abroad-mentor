@@ -86,9 +86,10 @@ Every developer needs the following tools installed on their machine (Windows wi
 ## 3. Repository & Environment Setup
 
 ### 3.1 Clone the Repository
+Every team member should clone the official repository to their local machine:
 ```bash
-git clone https://github.com/<organization-or-username>/study-abroad-mentor-platform.git
-cd study-abroad-mentor-platform
+git clone https://github.com/heyhusn/abroad-mentor.git
+cd abroad-mentor
 ```
 
 ### 3.2 Install Dependencies
@@ -354,8 +355,3 @@ Every team member must strictly adhere to these 14 rules without exception:
 14. **NEVER** enable `FAULT_INJECTION_ENABLED` outside local and staging environments.
 
 ---
-
-## 🆘 Need Help?
-* **Code / Architecture Questions**: Post in Discord `#dev` and tag `@founder` or `@ai-engineer`.
-* **Design / UX Questions**: Post in `#design`.
-* **Testing / Bug Reporting**: Post in `#bugs`.
