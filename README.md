@@ -19,7 +19,7 @@ A trusted peer-to-peer guidance marketplace connecting aspiring students in Paki
 
 👉 **[Read TEAM_ONBOARDING.md](TEAM_ONBOARDING.md)** for:
 - Detailed tool installation instructions (Node, pnpm, Python, uv, Docker, Supabase CLI).
-- Safe settings configuration for Claude Code and Google Antigravity.
+- Visual Studio Code and Claude extension setup.
 - The "AI Driving Licence" checklist.
 - The Git branch, PR, and "Break-it check" workflow.
 - Role-specific development workflows (Frontend, Backend/DevOps, R&D).
@@ -32,9 +32,9 @@ A trusted peer-to-peer guidance marketplace connecting aspiring students in Paki
 | Role | Primary Responsibilities | Capacity | AI Tooling |
 | :--- | :--- | :--- | :--- |
 | **Founder / Backend (You, PO)** | Product Owner, domain business rules, Safepay, ledger, Supabase migrations & RLS policies, production releases | 14 h/wk | Claude Code (MAJOR), Claude Chat, Hand |
-| **Frontend + UI/UX** | Figma design system, Next.js App Router, Tailwind CSS, `next-intl` shell, PWA mobile experience, Playwright e2e | 12.5 h/wk | Claude Code (MAJOR), Antigravity (MINOR), Claude Chat |
-| **AI Engineer** | CI/CD pipelines, local Docker/Supabase stack, LiveKit WebRTC, job worker processes, 2FA, contact filter | 12.5 h/wk | Claude Code (MAJOR), Antigravity (MINOR), Claude Chat |
-| **R&D Specialist** | Student user research, mentor recruitment & "show don't send" ID verification, usability testing (SUS), QA coordination | 12.5 h/wk | Claude Chat (research), Antigravity (fact cards), Hand |
+| **Frontend + UI/UX** | Figma design system, Next.js App Router, Tailwind CSS, `next-intl` shell, PWA mobile experience, Playwright e2e | 12.5 h/wk | VS Code + Claude (MAJOR/MINOR), Claude Chat |
+| **AI Engineer** | CI/CD pipelines, local Docker/Supabase stack, LiveKit WebRTC, job worker processes, 2FA, contact filter | 12.5 h/wk | VS Code + Claude (MAJOR/MINOR), Claude Chat |
+| **R&D Specialist** | Student user research, mentor recruitment & "show don't send" ID verification, usability testing (SUS), QA coordination | 12.5 h/wk | Claude Chat (research), VS Code / GitHub web (fact cards), Hand |
 
 ---
 
@@ -89,7 +89,7 @@ pnpm dev
 ## 📋 AI Coding Rules & Guardrails
 
 All coding agents and human contributors MUST follow [AGENTS.md](file:///AGENTS.md) and [CLAUDE.md](file:///CLAUDE.md):
-- **MAJOR Tasks**: Routed to Claude Code (max 3 sessions per person per week).
-- **MINOR Tasks**: Routed to Google Antigravity (max 2 files, <50 lines, styling, copy swaps, one-file fixes).
+- **MAJOR Tasks**: Routed to Claude Code / Claude in VS Code plan mode (max 3 sessions per person per week).
+- **MINOR Tasks**: Handled via Claude in VS Code or directly by hand (max 2 files, <50 lines, styling, copy swaps, one-file fixes).
 - **Review Policy**: Any change touching sensitive areas (`supabase/migrations`, `apps/api/app/domain`, payments, auth, CI) requires 2 non-author reviews.
 - **Explain-Back Rule**: Authors must explain what their code does without AI. If you cannot explain a line, it does not get merged.

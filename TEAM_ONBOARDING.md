@@ -81,6 +81,14 @@ Every developer needs the following tools installed on their machine (Windows wi
   gh auth login
   ```
 
+### 2.7 Visual Studio Code & Claude Extension
+* Install **VS Code**: [code.visualstudio.com](https://code.visualstudio.com/)
+* Install the official **Claude Extension**:
+  1. Open VS Code and open the Extensions view (`Ctrl+Shift+X` or `Cmd+Shift+X` on macOS).
+  2. Search for **Claude** (by Anthropic) and click **Install**.
+  3. Sign in with your Anthropic Claude account.
+  4. You will use this extension directly inside VS Code to build, edit, and review code for the project.
+
 ---
 
 ## 3. Repository & Environment Setup
@@ -116,57 +124,60 @@ Local Supabase Studio will be accessible at: `http://localhost:54323`
 
 ---
 
-## 4. AI Coding Tools Setup & Safe Settings
+## 4. AI Coding Tools Setup & Safe Settings (VS Code + Claude)
 
-We use **Claude Code (Claude Pro)** for MAJOR tasks and **Google Antigravity** for MINOR tasks. Both tools MUST have privacy safeguards enabled before you run any command.
+We use **Visual Studio Code with the official Claude extension** (supported by the **Claude Code CLI**) to build this project. Privacy and security safeguards MUST be configured before running any AI command.
 
-### 4.1 Claude Code Setup (Claude Pro Account Required)
+### 4.1 Claude Account Privacy Configuration (Claude Pro Required)
+1. **Turn OFF Model Training**:
+   * Open `claude.ai` → **Settings** → **Privacy**.
+   * Turn OFF: **"Help improve Claude with your chats"**.
+   * Take a screenshot of this setting disabled and share it in Discord `#dev`.
+
+### 4.2 VS Code & Claude Extension Setup
+1. **Open the project in VS Code**:
+   ```bash
+   code .
+   ```
+2. **Open the Claude Extension**:
+   * Click the **Claude** icon in the VS Code Activity Bar (or press `Ctrl+Alt+C` / `Cmd+Alt+C`).
+   * Sign in with your Anthropic Claude account.
+3. **How Claude Operates in VS Code**:
+   * The Claude extension in VS Code automatically reads and follows [`AGENTS.md`](file:///AGENTS.md) and [`CLAUDE.md`](file:///CLAUDE.md) at the repository root.
+   * You can ask Claude in VS Code to explain code, scaffold files, generate tests from acceptance criteria, propose edits, and perform code reviews.
+   * **Always review diffs carefully in VS Code before accepting edits or committing.**
+
+### 4.3 Claude Code CLI Setup (Optional for Terminal Workflows)
+For terminal-driven automation and batch testing:
 1. Install Claude Code CLI:
    ```bash
    npm install -g @anthropic-ai/claude-code
    claude --version
    claude doctor
    ```
-2. **Turn OFF Model Training**:
-   * Open `claude.ai` → **Settings** → **Privacy**.
-   * Turn OFF: **"Help improve Claude with your chats"**.
-3. **Verify Settings Load**:
-   * In the repo root, run: `claude`
-   * Type `/context` and confirm that `AGENTS.md` and `CLAUDE.md` are loaded.
-   * Type `/permissions` and confirm `.env` files are blocked.
+2. In the repository root, start `claude`. Run `/context` to verify that `AGENTS.md` and `CLAUDE.md` are loaded, and verify that `.claude/settings.json` blocks `.env` access.
 
-### 4.2 Google Antigravity Setup
-1. Install Google Antigravity IDE / CLI.
-2. **Disable Telemetry**: Settings → Telemetry → **OFF**.
-3. **Safe Settings**:
-   * Security Preset: **Request Review** (never Turbo or Unrestricted).
-   * Terminal Command Auto-execution: **Request Review**.
-   * Plan Review Policy: **Asks for review**.
-   * Sandbox Mode: **On**.
-   * Access to files outside workspace: **Off**.
-   * Browser tools: **Off by default** (only enabled for staging tests, restricted to `localhost` and staging domain).
-
-### 4.3 The MAJOR vs MINOR Task Rule
-* **MAJOR Task** → Use **Claude Code** (Max 3 sessions per person per week):
-  * Any new screen, endpoint, job, or test suite.
+### 4.4 The MAJOR vs MINOR Task Rule
+* **MAJOR Task** → Use **Claude in VS Code (Plan Mode)** or **Claude Code** (Max 3 sessions per person per week):
+  * Any new screen, component, endpoint, job worker, or test suite.
   * Changes touching >2 files or >100 lines.
   * Touches sensitive areas: payments, ledger, refunds, auth, 2FA, RLS, migrations, CI.
   * Changes shared contracts (schema, API shape).
-* **MINOR Task** → Use **Google Antigravity** or By Hand:
+* **MINOR Task** → Use **Claude in VS Code** (Quick prompt) or By Hand:
   * Touches at most 2 files and under 50 lines.
   * NOT in a sensitive area.
-  * You already know exactly what to change (styling, copy swap, lint fix, 1-file tweak).
-* **HUMAN ONLY (By Hand - NO AI)**:
-  * Secrets, API keys, payment webhook signatures (`verify_signature`), `access_matrix.yaml`, and merging PRs.
+  * Straightforward changes: styling, copy swaps, 1-file tweaks, docstrings, or lint fixes.
+* **HUMAN ONLY (By Hand - NO AI Tools Allowed)**:
+  * Secrets, API keys, payment webhook signatures (`verify_signature`), `access_matrix.yaml`, and merging PRs to `main`.
 
 ---
 
 ## 5. The "AI Driving Licence" (Sprint 0 Check)
 
 Before taking your first MAJOR task, schedule a 1-hour session with the AI Engineer to demonstrate:
-1. [ ] Privacy settings are toggled OFF on both Claude and Antigravity (provide screenshot in Discord `#dev`).
-2. [ ] `/context` in Claude Code confirms `AGENTS.md` and `CLAUDE.md` loaded.
-3. [ ] Attempting to ask Claude to read `.env` is blocked by `.claude/settings.json`.
+1. [ ] Privacy settings are toggled OFF on Claude (screenshot posted in Discord `#dev`).
+2. [ ] Claude in VS Code / Claude Code confirms `AGENTS.md` and `CLAUDE.md` are loaded in context.
+3. [ ] Attempting to ask Claude to read `.env` is blocked.
 4. [ ] Explain what plan mode, `/clear`, `/usage`, and `/rewind` do.
 5. [ ] State the MAJOR vs MINOR rule and recite the 14 NEVER rules.
 6. [ ] Complete one T7 Explain-Back exercise.
@@ -325,7 +336,7 @@ Next: Issue #15 - Wire mentor directory to search API [CC]
 Blocked: none
 Hours today: 2.0   AI: Claude weekly 45%
 ```
-*Tool tags*: `[CC]` Claude Code, `[AG]` Antigravity, `[chat]` Claude Chat, `[hand]` By Hand.
+*Tool tags*: `[Claude]` Claude in VS Code / Claude Code, `[chat]` Claude Chat, `[hand]` By Hand.
 
 ### 9.2 Weekly Schedule
 * **Wednesday 22:00 PKT**: Mid-week checkpoint (mark items `on track`, `at risk`, or `blocked`).
