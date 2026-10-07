@@ -1,0 +1,51 @@
+# Secrets and credentials (CRITICAL: NEVER COMMIT)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+id_rsa*
+
+# Dependencies
+node_modules/
+.pnpm-store/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Build outputs
+.next/
+dist/
+out/
+build/
+.turbo/
+
+# Testing and coverage
+coverage/
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+test-results/
+playwright-report/
+
+# Supabase
+supabase/.branches/
+supabase/.temp/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE and local configs
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo

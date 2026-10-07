@@ -1,0 +1,50 @@
+{
+  "permissions": {
+    "defaultMode": "plan",
+    "allow": [
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(pnpm test:fast)",
+      "Bash(pnpm turbo *)",
+      "Bash(pnpm exec playwright test *)",
+      "Bash(uv run pytest *)",
+      "Bash(uv run ruff *)",
+      "Bash(uv run mypy *)",
+      "Bash(supabase start)",
+      "Bash(supabase stop)",
+      "Bash(supabase status)",
+      "Bash(supabase test db)",
+      "Bash(supabase gen types *)"
+    ],
+    "ask": [
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(supabase db reset)",
+      "Bash(supabase migration new *)",
+      "Bash(pnpm add *)",
+      "Bash(uv add *)"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Edit(.env)",
+      "Edit(.env.*)",
+      "Read(secrets/**)",
+      "Read(*.pem)",
+      "Read(*.key)",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(supabase db push*)",
+      "Bash(supabase db reset --linked*)",
+      "Bash(supabase db reset --db-url*)",
+      "Bash(supabase link*)",
+      "Bash(supabase migration repair*)",
+      "Bash(supabase secrets*)",
+      "Bash(vercel*)",
+      "Bash(gh secret*)"
+    ]
+  }
+}

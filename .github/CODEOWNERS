@@ -1,0 +1,18 @@
+# CODEOWNERS for Study Abroad Mentor Platform
+# Sensitive areas require review from both code owners (Founder/Backend & AI Engineer)
+
+# Critical sensitive areas (payments, money, auth, RLS, migrations, CI, config)
+supabase/migrations/           @founder @ai-engineer
+supabase/tests/                @founder @ai-engineer
+apps/api/app/domain/           @founder @ai-engineer
+apps/api/app/routers/payments.py   @founder @ai-engineer
+apps/api/app/routers/webhooks.py   @founder @ai-engineer
+apps/api/app/routers/admin.py      @founder @ai-engineer
+apps/api/app/integrations/safepay.py @founder @ai-engineer
+apps/api/app/jobs/             @founder @ai-engineer
+apps/web/app/(admin)/          @founder @ai-engineer
+.github/workflows/             @founder @ai-engineer
+AGENTS.md                      @founder @ai-engineer
+CLAUDE.md                      @founder @ai-engineer
+.claude/                       @founder @ai-engineer
+.agents/                       @founder @ai-engineer

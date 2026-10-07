@@ -1,0 +1,19 @@
+text,expected
+"0300.123.4567",blocked
+"0300/1234567",blocked
+"0 3 0 0 1 2 3 4 5 6 7",blocked
+"۰۳۰۰۱۲۳۴۵۶۷",blocked
+"03OO1234567",blocked
+"+49 151 23456789",blocked
+"+44 7700 900123",blocked
+"ali [at] gmail [dot] com",blocked
+"wa.me/923001234567",blocked
+"t.me/mentor_ali",blocked
+"insta: @study_mentor",blocked
+"zero three zero zero one two three four five six seven",blocked
+"Free slots: 10 11 12 13 14 15",allowed
+"Fees were 1500 2000 3000 PKR",allowed
+"I took CS 101 202 303 404",allowed
+"Deadlines 15/01/2027 31/05/2027",allowed
+"IELTS bands 7.0 7.5 8.0 6.5",allowed
+"The session starts at 18:00 PKT or 14:00 CET",allowed
