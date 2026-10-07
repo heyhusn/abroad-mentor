@@ -15,6 +15,18 @@ A trusted peer-to-peer guidance marketplace connecting aspiring students in Paki
 
 ---
 
+## 📖 Team Onboarding & Developer Guide
+
+👉 **[Read TEAM_ONBOARDING.md](TEAM_ONBOARDING.md)** for:
+- Detailed tool installation instructions (Node, pnpm, Python, uv, Docker, Supabase CLI).
+- Safe settings configuration for Claude Code and Google Antigravity.
+- The "AI Driving Licence" checklist.
+- The Git branch, PR, and "Break-it check" workflow.
+- Role-specific development workflows (Frontend, Backend/DevOps, R&D).
+- The 14 NEVER rules.
+
+---
+
 ## 👥 Team Structure & Ownership
 
 | Role | Primary Responsibilities | Capacity | AI Tooling |
