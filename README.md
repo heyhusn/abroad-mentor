@@ -29,6 +29,8 @@ A trusted peer-to-peer guidance marketplace connecting aspiring students in Paki
 
 ## 👥 Team Structure & Ownership
 
+> 🔒 **Branch & Merge Rule**: **Only `@heyhusn` can push or merge code into the `main` branch.** All other team members must work on their own named branches (e.g. `ali/feature-name`) and submit Pull Requests to `@heyhusn` for code review.
+
 | Role | Primary Responsibilities | Capacity | AI Tooling |
 | :--- | :--- | :--- | :--- |
 | **Founder / Backend (You, PO)** | Product Owner, domain business rules, Safepay, ledger, Supabase migrations & RLS policies, production releases | 14 h/wk | Claude Code (MAJOR), Claude Chat, Hand |

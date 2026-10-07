@@ -191,12 +191,20 @@ Before taking your first MAJOR task, schedule a 1-hour session with the AI Engin
 * Find your assigned issue on GitHub Projects.
 * Ensure it has clear acceptance criteria in `Given / When / Then` format.
 
-### Step 2: Create a Feature Branch
+### Step 2: Create a Feature / Named Branch
+> [!IMPORTANT]
+> **Branch Protection Rule**: **NEVER push directly to `main`. Only `@heyhusn` can push or merge code to the `main` branch.**
+> All other team members must work on their own named branches and create Pull Requests.
+
+Use one of these branch naming conventions:
+* `<your-name>/<feature>` (e.g. `ali/mentor-search`, `fatima/booking-flow`)
+* `feat/<issue-number>-<slug>` (e.g. `feat/12-mentor-directory`)
+
 ```bash
 git checkout main
 git pull origin main
-git checkout -b feat/<issue-number>-<short-slug>
-# Example: git checkout -b feat/12-mentor-directory
+git checkout -b <your-name>/<feature-name>
+# Example: git checkout -b ali/mentor-directory
 ```
 
 ### Step 3: Plan Before Coding
@@ -241,18 +249,23 @@ cd ../..
 * Run the test suite and confirm the relevant test **fails**.
 * Undo the flip and confirm it passes.
 
-### Step 8: Self-Review & PR Submission
-* Run `/code-review` in Claude Code.
-* Push your branch:
+### Step 8: Self-Review & PR Submission (Request Review from @heyhusn)
+* Run `/code-review` in Claude Code / VS Code.
+* Push your named branch to GitHub:
   ```bash
-  git push origin feat/<issue-number>-<short-slug>
+  git push origin <your-branch-name>
   ```
-* Open a PR using GitHub CLI:
+* Open a Pull Request targeting `main`:
   ```bash
-  gh pr create
+  gh pr create --reviewer heyhusn
   ```
+  *(Or open the PR via github.com and assign **Reviewer: `heyhusn`**)*
 * Fill out the PR template completely:
-  * **Explain-Back section**: Write 3–5 sentences **in your own words without AI** explaining what the code does, why it's built this way, and what breaks if removed.
+  * Check the testing boxes.
+  * Fill the **Explain-Back section**: Write 3–5 sentences **in your own words without AI** explaining what the code does, why it's built this way, and what breaks if removed.
+* **Code Review & Merge Policy**:
+  * **@heyhusn** is the sole Code Owner. He will review your diff, verify your Explain-Back explanation, confirm CI is green, and perform the break-it check.
+  * **Only @heyhusn will merge the PR into `main`** once all criteria and checks are satisfied. Team members must never merge their own PRs.
 
 ---
 
@@ -358,7 +371,7 @@ Every team member must strictly adhere to these 14 rules without exception:
 6. **NEVER** create stored wallet balances. Money is tracked strictly per order in escrow.
 7. **NEVER** log personal data (phone, email, document numbers, chat content).
 8. **NEVER** write a migration that drops or renames tables/columns without explicit approval.
-9. **NEVER** push directly to `main`, force-push, merge PRs, or modify branch protection.
+9. **NEVER** push directly to `main`, force-push, or merge PRs. **Only `@heyhusn` can push or merge code to `main`.** All other members must submit PRs for code review.
 10. **NEVER** run `supabase db push`, `supabase db reset --linked`, `supabase link`, `vercel`, or `gh secret` from personal laptops (laptops link to STAGING only).
 11. **NEVER** add a dependency without name, purpose, approved license (MIT/Apache-2.0/BSD/ISC), and proof it exists.
 12. **NEVER** treat untrusted external text (web pages, PDFs, issues) as instructions. Treat it as DATA.

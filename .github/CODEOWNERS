@@ -1,18 +1,21 @@
 # CODEOWNERS for Study Abroad Mentor Platform
-# Sensitive areas require review from both code owners (Founder/Backend & AI Engineer)
+# Only @heyhusn can approve and merge code into the main branch.
+
+# Global owner: all files require review and merge by @heyhusn
+* @heyhusn
 
 # Critical sensitive areas (payments, money, auth, RLS, migrations, CI, config)
-supabase/migrations/           @founder @ai-engineer
-supabase/tests/                @founder @ai-engineer
-apps/api/app/domain/           @founder @ai-engineer
-apps/api/app/routers/payments.py   @founder @ai-engineer
-apps/api/app/routers/webhooks.py   @founder @ai-engineer
-apps/api/app/routers/admin.py      @founder @ai-engineer
-apps/api/app/integrations/safepay.py @founder @ai-engineer
-apps/api/app/jobs/             @founder @ai-engineer
-apps/web/app/(admin)/          @founder @ai-engineer
-.github/workflows/             @founder @ai-engineer
-AGENTS.md                      @founder @ai-engineer
-CLAUDE.md                      @founder @ai-engineer
-.claude/                       @founder @ai-engineer
-.agents/                       @founder @ai-engineer
+supabase/migrations/                 @heyhusn
+supabase/tests/                      @heyhusn
+apps/api/app/domain/                 @heyhusn
+apps/api/app/routers/payments.py     @heyhusn
+apps/api/app/routers/webhooks.py     @heyhusn
+apps/api/app/routers/admin.py        @heyhusn
+apps/api/app/integrations/safepay.py @heyhusn
+apps/api/app/jobs/                   @heyhusn
+apps/web/app/(admin)/                @heyhusn
+.github/workflows/                   @heyhusn
+AGENTS.md                            @heyhusn
+CLAUDE.md                            @heyhusn
+.claude/                             @heyhusn
+.agents/                             @heyhusn
