@@ -49,6 +49,9 @@ export default function VerifyEmailPage() {
     setVerified(true);
 
     const role = typeof window !== 'undefined' ? sessionStorage.getItem('registered_role') : null;
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('is_authenticated', 'true');
+    }
     const targetUrl = role === 'mentor' ? '/mentor/apply' : '/student/onboarding';
 
     setTimeout(() => {

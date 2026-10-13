@@ -40,6 +40,10 @@ export default function SignInPage() {
         setError(t('errorTitle'));
         return;
       }
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('is_authenticated', 'true');
+        localStorage.setItem('user_email', email);
+      }
       router.push('/student/onboarding');
     } finally {
       setLoading(false);
