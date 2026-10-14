@@ -75,45 +75,71 @@ export default function StudentSidebar() {
             </Link>
           </div>
 
-          {/* Section: ACTIVITIES */}
+          {/* Section: AI TOOLS */}
           <div className="space-y-1">
             <div className="px-3 text-[10px] font-bold tracking-wider text-slate-400 dark:text-slate-500 uppercase">
-              Activities
+              AI Tools
             </div>
 
             <Link
               href="/assistant"
-              className="flex items-center gap-3 px-3 py-1.5 rounded-xl text-xs text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/60 font-medium"
+              className={`flex items-center gap-3 px-3 py-1.5 rounded-xl text-xs transition ${
+                pathname === '/assistant'
+                  ? 'bg-emerald-50 dark:bg-emerald-950/60 font-bold text-emerald-800 dark:text-emerald-300'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/60 font-medium'
+              }`}
             >
               <span>✨</span>
               <span>AI Assistant</span>
             </Link>
 
             <Link
-              href="/country-guides"
-              className="flex items-center gap-3 px-3 py-1.5 rounded-xl text-xs text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/60 font-medium"
+              href="/checklist"
+              className={`flex items-center gap-3 px-3 py-1.5 rounded-xl text-xs transition ${
+                pathname === '/checklist'
+                  ? 'bg-emerald-50 dark:bg-emerald-950/60 font-bold text-emerald-800 dark:text-emerald-300'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/60 font-medium'
+              }`}
             >
               <span>📋</span>
-              <span>Checklist &amp; readiness</span>
+              <span>Checklist &amp; roadmap</span>
             </Link>
 
             <Link
-              href="/country-guides"
-              className="flex items-center gap-3 px-3 py-1.5 rounded-xl text-xs text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/60 font-medium"
+              href="/scholarships"
+              className={`flex items-center gap-3 px-3 py-1.5 rounded-xl text-xs transition ${
+                pathname === '/scholarships'
+                  ? 'bg-emerald-50 dark:bg-emerald-950/60 font-bold text-emerald-800 dark:text-emerald-300'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/60 font-medium'
+              }`}
             >
-              <span>🌍</span>
-              <span>Country guides</span>
+              <span>🎓</span>
+              <span>Scholarships</span>
             </Link>
 
-            <div className="flex items-center gap-3 px-3 py-1.5 rounded-xl text-xs text-slate-400 dark:text-slate-500 font-medium cursor-not-allowed">
-              <span>🎓</span>
+            <Link
+              href="/professor-finder"
+              className={`flex items-center gap-3 px-3 py-1.5 rounded-xl text-xs transition ${
+                pathname === '/professor-finder'
+                  ? 'bg-emerald-50 dark:bg-emerald-950/60 font-bold text-emerald-800 dark:text-emerald-300'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/60 font-medium'
+              }`}
+            >
+              <span>🔬</span>
               <span>Professor finder</span>
-            </div>
+            </Link>
 
-            <div className="flex items-center gap-3 px-3 py-1.5 rounded-xl text-xs text-slate-400 dark:text-slate-500 font-medium cursor-not-allowed">
+            <Link
+              href="/housing"
+              className={`flex items-center gap-3 px-3 py-1.5 rounded-xl text-xs transition ${
+                pathname === '/housing'
+                  ? 'bg-emerald-50 dark:bg-emerald-950/60 font-bold text-emerald-800 dark:text-emerald-300'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/60 font-medium'
+              }`}
+            >
               <span>🏠</span>
               <span>Housing</span>
-            </div>
+            </Link>
           </div>
 
           {/* Section: COMMUNITY */}
