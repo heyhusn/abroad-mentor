@@ -148,15 +148,29 @@ export default function StudentSidebar() {
               Community
             </div>
 
-            <div className="flex items-center gap-3 px-3 py-1.5 rounded-xl text-xs text-slate-400 dark:text-slate-500 font-medium cursor-not-allowed">
+            <Link
+              href="/communities"
+              className={`flex items-center gap-3 px-3 py-1.5 rounded-xl text-xs transition ${
+                pathname === '/communities'
+                  ? 'bg-emerald-50 dark:bg-emerald-950/60 font-bold text-emerald-800 dark:text-emerald-300'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/60 font-medium'
+              }`}
+            >
               <span>👥</span>
               <span>Communities</span>
-            </div>
+            </Link>
 
-            <div className="flex items-center gap-3 px-3 py-1.5 rounded-xl text-xs text-slate-400 dark:text-slate-500 font-medium cursor-not-allowed">
+            <Link
+              href="/admits-rejects"
+              className={`flex items-center gap-3 px-3 py-1.5 rounded-xl text-xs transition ${
+                pathname === '/admits-rejects'
+                  ? 'bg-emerald-50 dark:bg-emerald-950/60 font-bold text-emerald-800 dark:text-emerald-300'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/60 font-medium'
+              }`}
+            >
               <span>📊</span>
-              <span>Admin &amp; reports</span>
-            </div>
+              <span>Admits &amp; rejects</span>
+            </Link>
           </div>
 
           {/* Section: ACCOUNT */}
