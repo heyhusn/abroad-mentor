@@ -46,22 +46,22 @@ export default function AdminLoginPage() {
       </header>
 
       <main className="flex-1 flex items-center justify-center p-4">
-        <div className="w-full max-w-sm rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 shadow-xl text-center space-y-6">
-          <div className="h-12 w-12 rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 flex items-center justify-center text-xl font-bold mx-auto">
+        <div className="w-full max-w-sm rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 sm:p-10 shadow-sm text-center space-y-6">
+          <div className="h-12 w-12 rounded-2xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 flex items-center justify-center text-2xl mx-auto">
             🔐
           </div>
 
           <div>
-            <h1 className="text-lg font-bold text-slate-900 dark:text-white">
+            <h1 className="text-xl font-bold text-slate-900 dark:text-white">
               Enter your authenticator code
             </h1>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
               Open Google Authenticator or 1Password and enter the 6-digit code.
             </p>
           </div>
 
           <form onSubmit={handleVerify} className="space-y-6">
-            <div className="flex justify-center gap-2">
+            <div className="grid grid-cols-6 gap-2">
               {digits.map((digit, idx) => (
                 <input
                   key={idx}
@@ -70,7 +70,7 @@ export default function AdminLoginPage() {
                   maxLength={1}
                   value={digit}
                   onChange={(e) => handleChange(idx, e.target.value)}
-                  className="w-10 h-12 text-center text-lg font-black rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white outline-none focus:ring-2 focus:ring-emerald-600"
+                  className="h-12 text-center text-lg font-bold rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800 text-slate-900 dark:text-white outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 transition"
                 />
               ))}
             </div>
@@ -78,7 +78,7 @@ export default function AdminLoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-md transition"
+              className="w-full py-2.5 rounded-lg bg-emerald-800 hover:bg-emerald-900 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-xs shadow-sm transition"
             >
               {loading ? 'Verifying...' : 'Verify'}
             </button>

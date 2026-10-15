@@ -27,6 +27,13 @@ export default function MentorsPage() {
   });
   const [sortBy, setSortBy] = useState('best_match');
 
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const visits = parseInt(localStorage.getItem('metrics_visited_directory') || '0', 10);
+      localStorage.setItem('metrics_visited_directory', String(visits + 1));
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-200">
       <Navbar />

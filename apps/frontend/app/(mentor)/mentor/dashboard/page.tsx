@@ -9,6 +9,31 @@ import ThemeToggle from '@/components/ThemeToggle';
 export default function MentorDashboardPage() {
   const t = useTranslations('MentorDashboard');
   const [status, setStatus] = useState<'under_review' | 'action_needed'>('under_review');
+  const [mentorName, setMentorName] = useState<string>('Sara Khan');
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const stored =
+        sessionStorage.getItem('registered_name') ||
+        localStorage.getItem('registered_name') ||
+        sessionStorage.getItem('user_name') ||
+        localStorage.getItem('user_name');
+      if (stored && stored.trim()) {
+        setMentorName(stored.trim());
+      }
+    }
+  }, []);
+
+  const getInitials = (name: string) => {
+    const parts = name.trim().split(/\s+/);
+    if (parts.length >= 2) {
+      return `${parts[0][0]}${parts[parts.length - 1][0]}`.toUpperCase();
+    }
+    return (name.slice(0, 2) || 'SK').toUpperCase();
+  };
+
+  const initials = getInitials(mentorName);
+  const firstName = mentorName.split(/\s+/)[0] || 'Sara';
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col transition-colors duration-200">
@@ -49,8 +74,11 @@ export default function MentorDashboardPage() {
 
             {/* Profile Avatar */}
             <div className="flex items-center gap-2 border-s border-slate-200 dark:border-slate-800 ps-3">
-              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-950 text-xs font-bold text-emerald-800 dark:text-emerald-300">
-                AM
+              <div
+                className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-950 text-xs font-bold text-emerald-800 dark:text-emerald-300"
+                title={mentorName}
+              >
+                {initials}
               </div>
             </div>
           </div>
@@ -76,7 +104,7 @@ export default function MentorDashboardPage() {
                     <span>{t('appOverview')}</span>
                   </Link>
                   <Link
-                    href="#"
+                    href="/mentor/availability"
                     className="flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800"
                   >
                     <span>📅</span>
@@ -91,7 +119,7 @@ export default function MentorDashboardPage() {
                 </p>
                 <nav className="space-y-1">
                   <Link
-                    href="#"
+                    href="/payment"
                     className="flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800"
                   >
                     <span>💳</span>
@@ -113,14 +141,14 @@ export default function MentorDashboardPage() {
                 </p>
                 <nav className="space-y-1">
                   <Link
-                    href="#"
+                    href="/mentors"
                     className="flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800"
                   >
                     <span>👤</span>
                     <span>{t('mentorProfile')}</span>
                   </Link>
                   <Link
-                    href="#"
+                    href="/settings"
                     className="flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800"
                   >
                     <span>⚙️</span>
@@ -131,7 +159,7 @@ export default function MentorDashboardPage() {
 
               {/* User badge */}
               <div className="border-t border-slate-100 dark:border-slate-800 pt-4">
-                <p className="text-xs font-bold text-slate-900 dark:text-white">{t('mentorName')}</p>
+                <p className="text-xs font-bold text-slate-900 dark:text-white">{mentorName}</p>
                 <p className="text-[11px] text-amber-600 dark:text-amber-400 font-medium">{t('mentorStatus')}</p>
               </div>
             </div>
@@ -140,7 +168,9 @@ export default function MentorDashboardPage() {
           {/* Main Dashboard Content */}
           <main className="lg:col-span-9 space-y-6">
             <div>
-              <h1 className="text-2xl font-bold text-slate-900 dark:text-white text-start">{t('greeting')}</h1>
+              <h1 className="text-2xl font-bold text-slate-900 dark:text-white text-start">
+                Hi, {firstName}
+              </h1>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 text-start">{t('greetingSubtitle')}</p>
             </div>
 
@@ -170,7 +200,12 @@ export default function MentorDashboardPage() {
                   {/* Active review step highlighted */}
                   <div className="flex items-center gap-3 rounded-lg bg-emerald-50/80 dark:bg-emerald-950/50 p-3 text-xs text-emerald-900 dark:text-emerald-300 font-semibold border border-emerald-200/60 dark:border-emerald-800">
                     <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-700 dark:bg-emerald-600 text-white text-[11px]">⏱</span>
-                    <span>{t('stepReviewing')}</span>
+                    <div className="flex-1">
+                      <p>{t('stepReviewing')}</p>
+                      <p className="text-[11px] font-normal text-slate-500 dark:text-slate-400 mt-0.5">
+                        Document check typically takes up to 24 hours.
+                      </p>
+                    </div>
                   </div>
 
                   <div className="flex items-center gap-3 text-xs text-slate-400 dark:text-slate-500">
@@ -179,7 +214,27 @@ export default function MentorDashboardPage() {
                   </div>
                 </div>
 
-                <p className="mt-8 text-[11px] text-slate-400 dark:text-slate-500 text-start">
+                {/* TEST PHASE: Immediate access button to test mentor dashboard */}
+                <div className="mt-6 rounded-xl border border-emerald-300 dark:border-emerald-800 bg-emerald-50/80 dark:bg-emerald-950/60 p-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                      <p className="text-xs font-bold text-emerald-950 dark:text-emerald-200">
+                        🧪 Testing Phase Access
+                      </p>
+                      <p className="text-[11px] text-emerald-800 dark:text-emerald-300 mt-0.5">
+                        Skip waiting for review to test live availability slots, pricing, sessions, and public profile.
+                      </p>
+                    </div>
+                    <Link
+                      href="/mentor/availability"
+                      className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white px-4 py-2 text-xs font-bold shadow-xs whitespace-nowrap transition"
+                    >
+                      <span>Enter full mentor workspace →</span>
+                    </Link>
+                  </div>
+                </div>
+
+                <p className="mt-6 text-[11px] text-slate-400 dark:text-slate-500 text-start">
                   {t('editNotice')}
                 </p>
               </div>

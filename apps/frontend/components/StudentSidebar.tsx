@@ -210,12 +210,35 @@ export default function StudentSidebar() {
               <span>✉️</span>
               <span>Email templates</span>
             </Link>
+
+            <Link
+              href="/settings"
+              className={`flex items-center gap-3 px-3 py-1.5 rounded-xl text-xs transition ${
+                pathname === '/settings'
+                  ? 'bg-emerald-50 dark:bg-emerald-950/60 font-bold text-emerald-800 dark:text-emerald-300'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/60 font-medium'
+              }`}
+            >
+              <span>⚙️</span>
+              <span>Settings</span>
+            </Link>
           </div>
         </div>
       </div>
 
       {/* User profile footer */}
-      <div className="p-3 border-t border-slate-100 dark:border-slate-800/80">
+      <div className="p-3 border-t border-slate-100 dark:border-slate-800/80 space-y-2">
+        <Link
+          href="/mentor/dashboard"
+          className="flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-emerald-50/70 hover:bg-emerald-100 dark:bg-emerald-950/40 dark:hover:bg-emerald-950/70 text-[11px] font-semibold text-emerald-800 dark:text-emerald-300 transition"
+        >
+          <span className="flex items-center gap-1.5">
+            <span>🎓</span>
+            <span>Mentor dashboard</span>
+          </span>
+          <span className="text-xs">→</span>
+        </Link>
+
         <div className="flex items-center gap-3 px-2 py-2 rounded-xl bg-slate-50/70 dark:bg-slate-800/40">
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-950 text-xs font-bold text-emerald-800 dark:text-emerald-300">
             SK
@@ -224,7 +247,7 @@ export default function StudentSidebar() {
             <p className="text-xs font-bold text-slate-900 dark:text-white truncate">
               Sara K.
             </p>
-            <p className="text-[10px] text-slate-400 truncate">Student</p>
+            <p className="text-[10px] text-slate-400 truncate">Student &middot; Sara Khan</p>
           </div>
         </div>
       </div>

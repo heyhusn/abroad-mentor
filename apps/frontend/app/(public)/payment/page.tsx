@@ -21,6 +21,13 @@ export default function PaymentPage() {
     e.preventDefault();
     setViewState('processing');
 
+    if (typeof window !== 'undefined') {
+      const paid = parseInt(localStorage.getItem('metrics_paid') || '0', 10);
+      localStorage.setItem('metrics_paid', String(paid + 1));
+      const confirmed = parseInt(localStorage.getItem('metrics_sessions_confirmed') || '0', 10);
+      localStorage.setItem('metrics_sessions_confirmed', String(confirmed + 1));
+    }
+
     setTimeout(() => {
       setViewState('received');
     }, 1500);

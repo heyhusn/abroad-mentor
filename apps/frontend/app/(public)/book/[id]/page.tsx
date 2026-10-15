@@ -42,6 +42,10 @@ export default function BookSessionDetailsPage() {
 
   const handleProceed = (e: React.FormEvent) => {
     e.preventDefault();
+    if (typeof window !== 'undefined') {
+      const count = parseInt(localStorage.getItem('metrics_booking_requests') || '0', 10);
+      localStorage.setItem('metrics_booking_requests', String(count + 1));
+    }
     router.push('/payment');
   };
 

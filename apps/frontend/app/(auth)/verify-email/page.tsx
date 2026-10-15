@@ -14,7 +14,18 @@ export default function VerifyEmailPage() {
   const [countdown, setCountdown] = useState(42);
   const [loading, setLoading] = useState(false);
   const [verified, setVerified] = useState(false);
+  const [userEmail, setUserEmail] = useState('you@example.com');
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const email =
+        sessionStorage.getItem('registered_email') ||
+        localStorage.getItem('registered_email') ||
+        localStorage.getItem('user_email');
+      if (email) setUserEmail(email);
+    }
+  }, []);
 
   useEffect(() => {
     if (countdown > 0) {
@@ -96,7 +107,7 @@ export default function VerifyEmailPage() {
       <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{t('title')}</h1>
       <p className="mt-2 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
         {t('subtitlePrefix')}{' '}
-        <span className="font-semibold text-slate-800 dark:text-slate-200">{t('subtitleEmail')}</span>
+        <span className="font-semibold text-slate-800 dark:text-slate-200">{userEmail}</span>
         {t('subtitleSuffix')}
       </p>
 

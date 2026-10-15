@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import LangToggle from '@/components/LangToggle';
 import ThemeToggle from '@/components/ThemeToggle';
@@ -16,18 +16,37 @@ const registerSchema = z.object({
 
 type Role = 'guidance' | 'mentor';
 
-export default function RegisterPage() {
+function RegisterForm() {
   const t = useTranslations('Register');
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const [role, setRole] = useState<Role>('guidance');
-  const [fullName, setFullName] = useState('Sara Khan');
-  const [email, setEmail] = useState('sara.k@example.com');
-  const [password, setPassword] = useState('password1234');
-  const [ageChecked, setAgeChecked] = useState(true); // Pre-checked as in design
-  const [termsChecked, setTermsChecked] = useState(true); // Pre-checked as in design
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [ageChecked, setAgeChecked] = useState(true);
+  const [termsChecked, setTermsChecked] = useState(true);
   const [loading, setLoading] = useState(false);
   const [errorBanner, setErrorBanner] = useState<string | null>(null);
+
+  React.useEffect(() => {
+    // Check if role is specified in URL query
+    const roleParam = searchParams.get('role');
+    if (roleParam === 'mentor' || roleParam === 'guidance') {
+      setRole(roleParam);
+    }
+
+    // Pre-populate if previously entered
+    if (typeof window !== 'undefined') {
+      const storedName =
+        sessionStorage.getItem('registered_name') || localStorage.getItem('registered_name');
+      const storedEmail =
+        sessionStorage.getItem('registered_email') || localStorage.getItem('registered_email');
+      if (storedName) setFullName(storedName);
+      if (storedEmail) setEmail(storedEmail);
+    }
+  }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,10 +69,13 @@ export default function RegisterPage() {
         sessionStorage.setItem('registered_role', role);
         sessionStorage.setItem('registered_email', email);
         sessionStorage.setItem('registered_name', fullName);
+        localStorage.setItem('registered_role', role);
+        localStorage.setItem('registered_email', email);
+        localStorage.setItem('registered_name', fullName);
+        localStorage.setItem('user_name', fullName);
       }
       // Navigate directly to email verification screen
       router.push('/verify-email');
-      // Fallback navigation in case Next router client cache stalls
       setTimeout(() => {
         if (typeof window !== 'undefined' && window.location.pathname.includes('/register')) {
           window.location.href = '/verify-email';
@@ -243,3 +265,12 @@ export default function RegisterPage() {
     </div>
   );
 }
+
+export default function RegisterPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center p-6 text-xs text-slate-400">Loading registration...</div>}>
+      <RegisterForm />
+    </Suspense>
+  );
+}
+

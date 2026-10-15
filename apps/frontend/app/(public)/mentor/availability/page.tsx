@@ -5,6 +5,20 @@ import Link from 'next/link';
 import ThemeToggle from '@/components/ThemeToggle';
 
 export default function AvailabilityPricingPage() {
+  const [mentorName, setMentorName] = useState('Sara Khan');
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const stored =
+        sessionStorage.getItem('registered_name') ||
+        localStorage.getItem('registered_name') ||
+        localStorage.getItem('user_name');
+      if (stored && stored.trim()) {
+        setMentorName(stored.trim());
+      }
+    }
+  }, []);
+
   const [selectedDays, setSelectedDays] = useState<string[]>(['Mon', 'Wed', 'Fri', 'Sat']);
   const [services, setServices] = useState([
     { id: 's1', name: '30-min intro call', time: '30 min', price: 3150, active: true },
@@ -78,11 +92,11 @@ export default function AvailabilityPricingPage() {
         {/* Mentor Profile Footer */}
         <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 flex items-center gap-2.5">
           <div className="h-8 w-8 rounded-full bg-emerald-700 text-white flex items-center justify-center text-xs font-bold">
-            AT
+            {mentorName.slice(0, 2).toUpperCase()}
           </div>
           <div className="min-w-0 flex-1">
-            <p className="text-xs font-bold truncate">Ayesha Tariq</p>
-            <p className="text-[10px] text-slate-400">Mentor · TU Berlin</p>
+            <p className="text-xs font-bold truncate">{mentorName}</p>
+            <p className="text-[10px] text-slate-400">Mentor &middot; Active workspace</p>
           </div>
         </div>
       </aside>

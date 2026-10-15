@@ -151,6 +151,18 @@ export default function Navbar() {
                   >
                     Messages
                   </Link>
+                  <Link
+                    href="/settings"
+                    className="block px-3 py-1.5 text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
+                  >
+                    Settings
+                  </Link>
+                  <Link
+                    href="/mentor/dashboard"
+                    className="block px-3 py-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/40"
+                  >
+                    Mentor dashboard
+                  </Link>
                   <button
                     type="button"
                     onClick={handleSignOut}

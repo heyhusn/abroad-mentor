@@ -10,17 +10,27 @@ import { z } from 'zod';
 
 const signInSchema = z.object({
   email: z.string().trim().email(),
-  password: z.string().min(1),
+  password: z.string().min(10, 'Password must be at least 10 characters'),
 });
 
 export default function SignInPage() {
   const t = useTranslations('SignIn');
   const router = useRouter();
-  const [email, setEmail] = useState('you@example.com');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const stored =
+        sessionStorage.getItem('registered_email') ||
+        localStorage.getItem('registered_email') ||
+        localStorage.getItem('user_email');
+      if (stored) setEmail(stored);
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,14 +38,19 @@ export default function SignInPage() {
 
     const result = signInSchema.safeParse({ email, password });
     if (!result.success) {
-      setError(t('errorTitle'));
+      const issue = result.error.errors[0];
+      if (issue && password.length < 10) {
+        setError('Password must be at least 10 characters long.');
+      } else {
+        setError(t('errorTitle'));
+      }
       return;
     }
 
     setLoading(true);
     try {
       await new Promise((r) => setTimeout(r, 600));
-      // For demo: if password is 'wrong', show error, otherwise navigate to student onboarding
+      // For demo: if password is 'wrong', show error
       if (password === 'wrong') {
         setError(t('errorTitle'));
         return;
@@ -43,8 +58,18 @@ export default function SignInPage() {
       if (typeof window !== 'undefined') {
         localStorage.setItem('is_authenticated', 'true');
         localStorage.setItem('user_email', email);
+        sessionStorage.setItem('registered_email', email);
       }
-      router.push('/student/onboarding');
+      const role =
+        (typeof window !== 'undefined' &&
+          (sessionStorage.getItem('registered_role') || localStorage.getItem('registered_role'))) ||
+        '';
+
+      if (role === 'mentor') {
+        router.push('/mentor/dashboard');
+      } else {
+        router.push('/bookings');
+      }
     } finally {
       setLoading(false);
     }
